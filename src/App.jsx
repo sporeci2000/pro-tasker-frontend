@@ -1,23 +1,24 @@
-import { Routes, Route } from 'react-router-dom';
-import ProtectedRoute from "./components/ProtectedRoute";
-import './App.css'
-
+import { Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProjectDetailsPage from "./pages/ProjectDetailsPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./components/Navbar";
 
-export default function App() {
-
+function App() {
   return (
     <>
-
+      <Navbar />
       <Routes>
+        {/* Redirect root to /login */}
         <Route path="/" element={<Navigate to="/login" />} />
+
+        {/* Public routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
 
-        {/* Protected */}
+        {/* Protected routes */}
         <Route
           path="/dashboard"
           element={
@@ -26,7 +27,6 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/projects/:id"
           element={
@@ -36,12 +36,11 @@ export default function App() {
           }
         />
 
+        {/* Catch-all */}
         <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-
       </Routes>
-
-
     </>
-  )
+  );
 }
 
+export default App;
