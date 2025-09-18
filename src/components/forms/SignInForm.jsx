@@ -34,7 +34,6 @@ export default function SignInForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
 
             {/* Error message */}
             {error && <p style={{ color: "red" }}>{error}</p>}
@@ -44,6 +43,7 @@ export default function SignInForm() {
                 <label>Email:</label>
                 <input
                     type="email"
+                    placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -55,6 +55,7 @@ export default function SignInForm() {
                 <label>Password:</label>
                 <input
                     type="password"
+                    placeholder="password" 
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
