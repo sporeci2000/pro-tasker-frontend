@@ -35,7 +35,6 @@ export default function SignUpForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Register</h2>
 
             {/* Error message */}
             {error && <p style={{ color: "red" }}>{error}</p>}
@@ -45,6 +44,7 @@ export default function SignUpForm() {
                 <label>Username:</label>
                 <input
                     type="text"
+                    placeholder="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
@@ -56,6 +56,7 @@ export default function SignUpForm() {
                 <label>Email:</label>
                 <input
                     type="email"
+                    placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -67,6 +68,7 @@ export default function SignUpForm() {
                 <label>Password:</label>
                 <input
                     type="password"
+                    placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
