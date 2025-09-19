@@ -43,29 +43,31 @@ export default function TaskItem({ task, projectId, onTaskUpdated, onTaskDeleted
     if (isEditing) {
         return (
             <li className="task-card editing">
-                <form onSubmit={handleUpdate}>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                <form className="task-edit-form" onSubmit={handleUpdate}>
+                    {error && <p className="error-text">{error}</p>}
 
+                    <label>Title</label>
                     <input
                         type="text"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required
-                        placeholder="Task title"
                     />
 
+                    <label>Description</label>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
-                        placeholder="Task description"
                     />
 
+                    <label>Status</label>
                     <select value={status} onChange={(e) => setStatus(e.target.value)}>
                         <option>To Do</option>
                         <option>In Progress</option>
                         <option>Done</option>
                     </select>
 
+                    <label>Priority</label>
                     <select value={priority} onChange={(e) => setPriority(e.target.value)}>
                         <option>Low</option>
                         <option>Medium</option>
@@ -73,20 +75,20 @@ export default function TaskItem({ task, projectId, onTaskUpdated, onTaskDeleted
                     </select>
 
                     <div className="task-actions">
-                        <button type="submit" className="save-btn">Save</button>
+                        <button type="submit" className="save-btn">💾 Save</button>
                         <button
                             type="button"
                             onClick={() => setIsEditing(false)}
                             className="cancel-btn"
                         >
-                            Cancel
+                            ❌ Cancel
                         </button>
                     </div>
                 </form>
             </li>
         );
     }
-
+    
     // VIEW MODE
     return (
         <li className="task-card">

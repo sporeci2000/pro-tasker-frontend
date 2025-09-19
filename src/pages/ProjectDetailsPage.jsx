@@ -5,15 +5,15 @@ import TaskItem from "../components/TaskItem";
 import TaskForm from "../components/forms/TaskForm";
 import "./ProjectDetailsPage.css";
 
-
 export default function ProjectDetailsPage() {
     const { id } = useParams(); // projectId from URL
     const [project, setProject] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [showForm, setShowForm] = useState(false);
 
-    // Load project + tasks when page loads
+    // Load project and tasks
     useEffect(() => {
         async function loadData() {
             try {
@@ -31,39 +31,54 @@ export default function ProjectDetailsPage() {
         loadData();
     }, [id]);
 
-    // Add new task to state
     function handleTaskCreated(newTask) {
         setTasks((prev) => [...prev, newTask]);
+        setShowForm(false); // hide form after adding
     }
 
-    // Update task in state
     function handleTaskUpdated(updatedTask) {
         setTasks((prev) =>
             prev.map((task) => (task._id === updatedTask._id ? updatedTask : task))
         );
     }
 
-    // Remove task from state
     function handleTaskDeleted(taskId) {
         setTasks((prev) => prev.filter((task) => task._id !== taskId));
     }
 
-    if (loading) return <p>Loading project...</p>;
-    if (error) return <p style={{ color: "red" }}>{error}</p>;
+    if (loading) return <p className="loading-text">Loading project...</p>;
+    if (error) return <p className="error-text">{error}</p>;
 
     return (
         <div className="project-details">
+            {/* Project Info */}
             <div className="project-header">
                 <h1>{project.name}</h1>
-                <p>{project.description}</p>
+                <p>{project.description || "No description provided."}</p>
+                <div className="project-meta">
+                    <span>📅 Created: {new Date(project.createdAt).toLocaleDateString()}</span>
+                    <span>⏱ Updated: {new Date(project.updatedAt).toLocaleDateString()}</span>
+                </div>
             </div>
 
+            {/* Tasks Section */}
             <section className="tasks-section">
-                <h2>Tasks</h2>
-                <TaskForm projectId={id} onTaskCreated={handleTaskCreated} />
+                <div className="tasks-header">
+                    <h2>Tasks</h2>
+                    <button
+                        className="toggle-form-btn"
+                        onClick={() => setShowForm(!showForm)}
+                    >
+                        {showForm ? "➖ Cancel" : "➕ Add Task"}
+                    </button>
+                </div>
+
+                {showForm && (
+                    <TaskForm projectId={id} onTaskCreated={handleTaskCreated} />
+                )}
 
                 {tasks.length === 0 ? (
-                    <p>No tasks yet.</p>
+                    <p className="empty-state"> No tasks yet. Add your first task!</p>
                 ) : (
                     <ul className="tasks-list">
                         {tasks.map((task) => (
