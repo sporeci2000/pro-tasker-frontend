@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { apiFetch } from "../utilities/api";
 
-export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }) {
+export default function TaskItem({ task, projectId, onTaskUpdated, onTaskDeleted }) {
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState(task.title);
     const [description, setDescription] = useState(task.description);
@@ -9,11 +9,12 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }) {
     const [priority, setPriority] = useState(task.priority);
     const [error, setError] = useState("");
 
+    // Update task
     async function handleUpdate(e) {
         e.preventDefault();
         try {
             const updated = await apiFetch(
-                `/projects/${task.project}/tasks/${task._id}`,
+                `/projects/${projectId}/tasks/${task._id}`,
                 {
                     method: "PUT",
                     body: JSON.stringify({ title, description, status, priority }),
@@ -26,9 +27,10 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }) {
         }
     }
 
+    // Delete task
     async function handleDelete() {
         try {
-            await apiFetch(`/projects/${task.project}/tasks/${task._id}`, {
+            await apiFetch(`/projects/${projectId}/tasks/${task._id}`, {
                 method: "DELETE",
             });
             onTaskDeleted(task._id);
@@ -37,9 +39,10 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }) {
         }
     }
 
+    // EDIT MODE
     if (isEditing) {
         return (
-            <li>
+            <li className="task-card editing">
                 <form onSubmit={handleUpdate}>
                     {error && <p style={{ color: "red" }}>{error}</p>}
 
@@ -48,11 +51,13 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }) {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required
+                        placeholder="Task title"
                     />
 
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
+                        placeholder="Task description"
                     />
 
                     <select value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -67,26 +72,42 @@ export default function TaskItem({ task, onTaskUpdated, onTaskDeleted }) {
                         <option>High</option>
                     </select>
 
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={() => setIsEditing(false)}>
-                        Cancel
-                    </button>
+                    <div className="task-actions">
+                        <button type="submit" className="save-btn">Save</button>
+                        <button
+                            type="button"
+                            onClick={() => setIsEditing(false)}
+                            className="cancel-btn"
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </form>
             </li>
         );
     }
 
+    // VIEW MODE
     return (
-        <li>
+        <li className="task-card">
             <h4>{task.title}</h4>
             <p>{task.description}</p>
-            <p>Status: {task.status}</p>
-            <p>Priority: {task.priority}</p>
+
+            <div className="task-badges">
+                <span className={`badge ${task.status.toLowerCase().replace(" ", "")}`}>
+                    {task.status}
+                </span>
+                <span className={`badge ${task.priority.toLowerCase()}`}>
+                    {task.priority}
+                </span>
+            </div>
 
             {error && <p style={{ color: "red" }}>{error}</p>}
 
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <div className="task-actions">
+                <button onClick={() => setIsEditing(true)} className="edit-btn">Edit</button>
+                <button onClick={handleDelete} className="delete-btn">Delete</button>
+            </div>
         </li>
     );
 }

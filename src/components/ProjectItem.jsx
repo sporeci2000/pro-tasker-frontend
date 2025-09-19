@@ -33,9 +33,9 @@ export default function ProjectItem({ project, onProjectUpdated, onProjectDelete
 
     if (isEditing) {
         return (
-            <li>
+            <li className="project-card editing">
                 <form onSubmit={handleUpdate}>
-                    {error && <p style={{ color: "red" }}>{error}</p>}
+                    {error && <p className="error-text">{error}</p>}
 
                     <input
                         type="text"
@@ -49,26 +49,31 @@ export default function ProjectItem({ project, onProjectUpdated, onProjectDelete
                         onChange={(e) => setDescription(e.target.value)}
                     />
 
-                    <button type="submit">Save</button>
-                    <button type="button" onClick={() => setIsEditing(false)}>
-                        Cancel
-                    </button>
+                    <div className="project-actions">
+                        <button type="submit" className="save-btn">💾 Save</button>
+                        <button type="button" onClick={() => setIsEditing(false)} className="cancel-btn">
+                            ❌ Cancel
+                        </button>
+                    </div>
                 </form>
             </li>
         );
     }
 
     return (
-        <li>
-            <h3>{project.name}</h3>
-            <p>{project.description}</p>
+        <li className="project-card">
+            <div className="project-info">
+                <h3>{project.name}</h3>
+                <p>{project.description || "No description provided."}</p>
+            </div>
 
-            {error && <p style={{ color: "red" }}>{error}</p>}
+            {error && <p className="error-text">{error}</p>}
 
-            <Link to={`/projects/${project._id}`}>View Details</Link>
-
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-            <button onClick={handleDelete}>Delete</button>
+            <div className="project-actions">
+                <Link to={`/projects/${project._id}`} className="details-link">🔎 View</Link>
+                <button onClick={() => setIsEditing(true)} className="edit-btn">✏️ Edit</button>
+                <button onClick={handleDelete} className="delete-btn">🗑️ Delete</button>
+            </div>
         </li>
     );
 }

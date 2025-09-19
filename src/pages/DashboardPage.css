@@ -1,0 +1,212 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f7f9fc;
+    color: #333;
+}
+
+/* Dashboard wrapper */
+.dashboard {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2749f1;
+}
+
+.dashboard-header button {
+    padding: 0.6rem 1.2rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.dashboard-header button:hover {
+    background: #1e40af;
+}
+
+/* Projects section */
+.projects h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+.projects ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 0;
+}
+
+/* Individual project card */
+.projects li {
+    background: #fff;
+    padding: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-weight: 500;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+}
+
+/* Empty state */
+.projects p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Project form styling */
+.projects form {
+    background: #fff;
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.projects form input,
+.projects form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.projects form input:focus,
+.projects form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 4px rgba(37, 99, 235, 0.3);
+}
+
+.projects form button {
+    padding: 0.6rem 1.2rem;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.projects form button:hover {
+    background: #1e40af;
+}
+
+.project-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Info */
+.project-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2749f1;
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* Actions */
+.project-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.project-actions button,
+.project-actions .details-link {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    text-decoration: none;
+}
+
+.project-actions button:hover,
+.project-actions .details-link:hover {
+    transform: scale(1.05);
+}
+
+/* Specific buttons */
+.details-link {
+    background: #3b82f6;
+    color: #fff;
+}
+
+.edit-btn {
+    background: #facc15;
+    color: #222;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: #fff;
+}
+
+.save-btn {
+    background: #22c55e;
+    color: #fff;
+}
+
+.cancel-btn {
+    background: #9ca3af;
+    color: #fff;
+}
+
+.error-text {
+    color: red;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}

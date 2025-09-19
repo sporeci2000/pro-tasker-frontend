@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import { apiFetch } from "../utilities/api";
 import ProjectItem from "../components/ProjectItem";
 import ProjectForm from "../components/forms/ProjectForm";
+import "./DashboardPage.css";
 
 export default function DashboardPage() {
+    const { user, logout } = useAuth();
     const [projects, setProjects] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -41,32 +44,36 @@ export default function DashboardPage() {
     }
 
     return (
-        <div>
-            <h1>Your Projects</h1>
+        <div className="dashboard">
+            <header className="dashboard-header">
+                <h1>Welcome, {user?.username} 👋</h1>
+                <button onClick={logout}>Logout</button>
+            </header>
 
-            {/* Project form at top */}
-            <ProjectForm onProjectCreated={handleProjectCreated} />
+            <section className="projects">
+                <h2>Your Projects</h2>
 
-            {/* Error display */}
-            {error && <p style={{ color: "red" }}>{error}</p>}
+                <ProjectForm onProjectCreated={handleProjectCreated} />
 
-            {/* Loading state or project list */}
-            {loading ? (
-                <p>Loading projects...</p>
-            ) : projects.length === 0 ? (
-                <p>No projects yet. Create one above.</p>
-            ) : (
-                <ul>
-                    {projects.map((project) => (
-                        <ProjectItem
-                            key={project._id}
-                            project={project}
-                            onProjectUpdated={handleProjectUpdated}
-                            onProjectDeleted={handleProjectDeleted}
-                        />
-                    ))}
-                </ul>
-            )}
+                {error && <p style={{ color: "red" }}>{error}</p>}
+
+                {loading ? (
+                    <p>Loading projects...</p>
+                ) : projects.length === 0 ? (
+                    <p>No projects yet. Create one above.</p>
+                ) : (
+                    <ul>
+                        {projects.map((project) => (
+                            <ProjectItem
+                                key={project._id}
+                                project={project}
+                                onProjectUpdated={handleProjectUpdated}
+                                onProjectDeleted={handleProjectDeleted}
+                            />
+                        ))}
+                    </ul>
+                )}
+            </section>
         </div>
     );
 }

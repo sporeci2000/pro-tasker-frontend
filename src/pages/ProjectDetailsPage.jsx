@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { apiFetch } from "../utilities/api";
 import TaskItem from "../components/TaskItem";
 import TaskForm from "../components/forms/TaskForm";
+import "./ProjectDetailsPage.css";
+
 
 export default function ProjectDetailsPage() {
     const { id } = useParams(); // projectId from URL
@@ -50,27 +52,32 @@ export default function ProjectDetailsPage() {
     if (error) return <p style={{ color: "red" }}>{error}</p>;
 
     return (
-        <div>
-            <h1>{project.name}</h1>
-            <p>{project.description}</p>
+        <div className="project-details">
+            <div className="project-header">
+                <h1>{project.name}</h1>
+                <p>{project.description}</p>
+            </div>
 
-            <h2>Tasks</h2>
-            <TaskForm projectId={id} onTaskCreated={handleTaskCreated} />
+            <section className="tasks-section">
+                <h2>Tasks</h2>
+                <TaskForm projectId={id} onTaskCreated={handleTaskCreated} />
 
-            {tasks.length === 0 ? (
-                <p>No tasks yet.</p>
-            ) : (
-                <ul>
-                    {tasks.map((task) => (
-                        <TaskItem
-                            key={task._id}
-                            task={task}
-                            onTaskUpdated={handleTaskUpdated}
-                            onTaskDeleted={handleTaskDeleted}
-                        />
-                    ))}
-                </ul>
-            )}
+                {tasks.length === 0 ? (
+                    <p>No tasks yet.</p>
+                ) : (
+                    <ul className="tasks-list">
+                        {tasks.map((task) => (
+                            <TaskItem
+                                key={task._id}
+                                task={task}
+                                projectId={id}
+                                onTaskUpdated={handleTaskUpdated}
+                                onTaskDeleted={handleTaskDeleted}
+                            />
+                        ))}
+                    </ul>
+                )}
+            </section>
         </div>
     );
 }
