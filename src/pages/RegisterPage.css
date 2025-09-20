@@ -8,9 +8,7 @@ body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #eef2ff, #9bafd6);
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
 }
 
 /* Main container */
@@ -22,6 +20,7 @@ body {
     max-width: 1000px;
     width: 100%;
     padding: 2rem;
+    margin: 0 auto;
 }
 
 .register-left {
@@ -130,4 +129,61 @@ body {
 
 .register-link:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .register-page {
+        flex-direction: column;
+        gap: 2rem;
+        max-width: 100%;
+        padding: 1.5rem;
+    }
+
+    .register-left {
+        order: -1;
+        margin-bottom: 1rem;
+    }
+
+    .register-title {
+        font-size: 2.5rem;
+    }
+
+    .register-tagline {
+        font-size: 1rem;
+    }
+
+    .register-right {
+        width: 100%;
+        max-width: 420px;
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .register-page {
+        gap: 1.2rem;
+        padding: 1rem;
+    }
+
+    .register-left {
+        order: -1;
+    }
+
+    .register-title {
+        font-size: 2rem;
+    }
+
+    .register-tagline {
+        font-size: 0.9rem;
+    }
+
+    .register-right {
+        width: 100%;
+        max-width: 100%;
+        padding: 1.5rem 1rem;
+    }
+
+    .register-right h2 {
+        font-size: 1.3rem;
+    }
 }
