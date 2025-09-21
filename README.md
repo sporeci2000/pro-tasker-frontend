@@ -1,12 +1,98 @@
-# React + Vite
+# Pro-Tasker / MERN Capstone 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack project management application with **authentication, responsive dashboard, and task tracking**. Users can create projects, add/edit/delete tasks, and manage priorities and statuses in a clean UI.  
 
-Currently, two official plugins are available:
+## Application Function
+Pro-Tasker, your personal project and task management dashboard.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Pro-Tasker helps you:  
+- Create and manage projects  
+- Add, edit, and track tasks within each project  
+- Stay organized with priorities, statuses, and deadlines  
+- Update progress seamlessly and keep everything in sync 
 
-## Expanding the ESLint configuration
+I built Pro-Tasker as a capstone project to showcase full-stack development skills. It’s designed to give users a clean and responsive interface to manage their work efficiently.  
+You can create projects, assign tasks with priority levels, and mark progress with status badges. Once done, tasks or projects can be updated or deleted easily. 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Check out Pro-Tasker in action here:** 
+
+![Pro-Tasker Screenshot](./assets/screenshot.png)  
+
+
+---
+
+## Features  
+
+- **Authentication** (Register/Login/Logout)  
+- **Responsive Dashboard** with sidebar & project cards  
+-  **Project Management** (Create, update, delete projects)  
+-  **Task Management** inside projects (add, edit, delete tasks)  
+-  **Task Labels** with status (To Do, In Progress, Done) & priority (Low, Medium, High)  
+-  **Mobile-friendly design** (optimized with media queries)  
+-  **Back to Dashboard button** for easy navigation  
+
+---
+
+## Tech Stack  
+
+**Frontend**  
+- React (Hooks, Context API)  
+- React Router  
+- CSS3 (Responsive, custom components)  
+
+**Backend**  
+- Node.js / Express  
+- MongoDB (Atlas)  
+- JWT Authentication  
+
+---
+
+## Installation  
+
+Clone the repo:  
+```bash
+git clone 
+cd pro-tasker-frontend
+```
+
+Install dependencies:  
+```bash
+npm install
+```
+
+Run frontend:  
+```bash
+npm run dev
+```
+
+Run backend:  
+```bash
+npm start
+```
+
+---
+
+## Environment Variables  
+
+Create a `.env` file in your backend folder and add:  
+
+```
+MONGO_URI=your-mongodb-uri
+JWT_SECRET=your-secret-key
+PORT=3000
+```
+
+## Backend repo link
+
+https://github.com/sporeci2000/pro-tasker-backend
+
+---
+
+## Future Plans  
+
+- Collaborators can join and contribute to projects  
+- Task progress tracking and visualization  
+- Expanded dashboard analytics 
+
+
+ 
