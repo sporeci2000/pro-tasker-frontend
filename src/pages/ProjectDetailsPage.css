@@ -319,3 +319,86 @@
 .task-edit-form .cancel-btn:hover {
     background: #6b7280;
 }
+
+@media (max-width: 768px) {
+    .project-details {
+        padding: 1.5rem;
+    }
+
+    .project-header {
+        padding: 1.5rem;
+    }
+
+    .project-header h1 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .project-header p {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .tasks-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .tasks-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .tasks-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .task-card {
+        padding: 1.2rem;
+    }
+
+    .task-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .task-actions button {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-details {
+        padding: 1rem;
+    }
+
+    .project-header {
+        padding: 1.2rem;
+    }
+
+    .project-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .project-header p {
+        font-size: 0.9rem;
+    }
+
+    .tasks-list {
+        grid-template-columns: 1fr;
+    }
+
+    .task-card {
+        padding: 1rem;
+    }
+
+    .task-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .task-actions button {
+        width: 100%;
+    }
+}

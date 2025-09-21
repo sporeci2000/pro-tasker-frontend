@@ -132,7 +132,7 @@ body {
     text-decoration: underline;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .login-page {
         flex-direction: column;
         gap: 2rem;
@@ -164,10 +164,6 @@ body {
     .login-page {
         gap: 1.2rem;
         padding: 1rem;
-    }
-
-    .login-left {
-        order: -1;
     }
 
     .app-title {
