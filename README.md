@@ -16,7 +16,7 @@ You can create projects, assign tasks with priority levels, and mark progress wi
 
 **Check out Pro-Tasker in action here:** 
 
-![Pro-Tasker Screenshot](./assets/screenshot.png)  
+![Pro-Tasker Screenshot](./src/assets/screenshot.png)  
 
 
 ---
