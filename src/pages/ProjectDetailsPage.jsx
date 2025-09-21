@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { apiFetch } from "../utilities/api";
 import TaskItem from "../components/TaskItem";
 import TaskForm from "../components/forms/TaskForm";
@@ -7,6 +7,7 @@ import "./ProjectDetailsPage.css";
 
 export default function ProjectDetailsPage() {
     const { id } = useParams(); // projectId from URL
+    const navigate = useNavigate();
     const [project, setProject] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -51,10 +52,18 @@ export default function ProjectDetailsPage() {
 
     return (
         <div className="project-details">
+            {/* Back Button */}
+            <button
+                className="back-btn"
+                onClick={() => navigate("/dashboard")}
+            >
+                ← Back to Dashboard
+            </button>
             {/* Project Info */}
             <div className="project-header">
                 <h1>{project.name}</h1>
                 <p>{project.description || "No description provided."}</p>
+
                 <div className="project-meta">
                     <span>📅 Created: {new Date(project.createdAt).toLocaleDateString()}</span>
                     <span>⏱ Updated: {new Date(project.updatedAt).toLocaleDateString()}</span>

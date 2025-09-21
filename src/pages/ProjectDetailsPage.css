@@ -320,6 +320,23 @@
     background: #6b7280;
 }
 
+.back-btn {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.6rem 1rem;
+    background: #3b82f6;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+    background: #2563eb;
+}
+
 @media (max-width: 768px) {
     .project-details {
         padding: 1.5rem;
@@ -400,5 +417,11 @@
 
     .task-actions button {
         width: 100%;
+    }
+
+    .back-btn {
+        width: 40%;
+        text-align: center;
+        font-size: 0.75rem;
     }
 }
