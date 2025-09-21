@@ -12,13 +12,11 @@ body {
     overflow-x: hidden;
 }
 
-/* DASHBOARD LAYOUT */
 .dashboard {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
 .sidebar {
     position: fixed;
     top: 0;
@@ -99,7 +97,6 @@ body {
     color: #333;
 }
 
-/* Sidebar project names */
 .project-names {
     list-style: none;
     padding: 0;
@@ -145,7 +142,6 @@ body {
     background: #dc2626;
 }
 
-/* MAIN AREA */
 .dashboard-main {
     margin-left: 260px;
     flex: 1;
@@ -166,7 +162,6 @@ body {
     margin-bottom: 2rem;
 }
 
-/* PROJECT CARDS GRID */
 .projects-list {
     list-style: none;
     display: grid;
@@ -327,21 +322,102 @@ html {
     transform: translateY(-2px);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .sidebar {
         position: relative;
         width: 100%;
         height: auto;
         border-right: none;
         border-bottom: 1px solid #eee;
+        box-shadow: none;
+        margin-bottom: 2rem;
     }
 
     .dashboard-main {
         margin-left: 0;
-        padding: 2rem 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .projects-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        box-shadow: none;
+        margin-bottom: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+
+    .dashboard-main {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    .dashboard-main h1 {
+        font-size: 1.6rem;
+        text-align: center;
     }
 
     .projects-list {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-card {
+        padding: 1rem 1.2rem;
+        border-radius: 10px;
+    }
+
+    .project-info h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .project-info p {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .project-actions {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.4rem;
+    }
+
+    .project-actions button,
+    .project-actions .details-link {
+        flex: 1;
+        padding: 0.45rem 0.6rem;
+        font-size: 0.8rem;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-main {
+        padding: 1.2rem;
+    }
+
+    .project-card {
+        padding: 1rem;
+    }
+
+    .project-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .project-actions button,
+    .project-actions .details-link {
+        width: 100%;
     }
 }
