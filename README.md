@@ -95,4 +95,7 @@ https://github.com/sporeci2000/pro-tasker-backend
 - Expanded dashboard analytics 
 
 
+## Live deployment link
+
+https://pro-tasker-frontend-5wc9.onrender.com/login
  

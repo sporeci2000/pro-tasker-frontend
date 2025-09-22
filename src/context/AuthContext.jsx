@@ -1,22 +1,18 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { apiFetch } from "../utilities/api";
 
-// This will store user info, token, and auth functions
 const AuthContext = createContext();
 
-// Custom hook
 export function useAuth() {
     return useContext(AuthContext);
 }
 
-// Wrap the app and give access to the auth state
 export function AuthProvider({ children }) {
-
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Runs once when the app loads
+    // Load saved auth from localStorage
     useEffect(() => {
         const savedToken = localStorage.getItem("token");
         const savedUser = localStorage.getItem("user");
@@ -29,30 +25,42 @@ export function AuthProvider({ children }) {
 
     // Login
     async function login(credentials) {
-        const res = await apiFetch("/auth/login", {
-            method: "POST",
-            body: JSON.stringify(credentials),
-        });
+        try {
+            const res = await apiFetch("/auth/login", {
+                method: "POST",
+                body: JSON.stringify(credentials),
+            });
 
-        setUser(res.user);
-        setToken(res.token);
+            setUser(res.user);
+            setToken(res.token);
 
-        localStorage.setItem("user", JSON.stringify(res.user));
-        localStorage.setItem("token", res.token);
+            localStorage.setItem("user", JSON.stringify(res.user));
+            localStorage.setItem("token", res.token);
+
+            return res;
+        } catch (err) {
+            throw new Error(err.message || "Login failed");
+        }
     }
 
     // Register
     async function register(data) {
-        const res = await apiFetch("/auth/register", {
-            method: "POST",
-            body: JSON.stringify(data),
-        });
+        try {
+            const res = await apiFetch("/auth/register", {
+                method: "POST",
+                body: JSON.stringify(data),
+            });
 
-        setUser(res.user);
-        setToken(res.token);
+            setUser(res.user);
+            setToken(res.token);
 
-        localStorage.setItem("user", JSON.stringify(res.user));
-        localStorage.setItem("token", res.token);
+            localStorage.setItem("user", JSON.stringify(res.user));
+            localStorage.setItem("token", res.token);
+
+            return res;
+        } catch (err) {
+            throw new Error(err.message || "Registration failed");
+        }
     }
 
     // Logout
@@ -63,7 +71,6 @@ export function AuthProvider({ children }) {
         localStorage.removeItem("token");
     }
 
-    // Makes the context data available to the entire app
     return (
         <AuthContext.Provider value={{ user, token, login, register, logout, loading }}>
             {children}
